@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  file_repository for OpenERP
+  Copyright (C) 2013 Akretion
+  Author: Benoît Guillot <benoit.guillot@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+    <data>
+        <!-- repeat the cron view to add a button to save and close the view -->
+        <record model="ir.ui.view" id="automatic_cron_form_view">
+            <field name="name">automatic_cron_form_view</field>
+            <field name="model">ir.cron</field>
+            <!-- priotity to be selected only with the button create cron  -->
+            <field name="priority">51</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Scheduled Actions">
+                    <field name="name"/>
+                    <field name="active"/>
+                    <field name="user_id" />
+                    <field name="priority" />
+                    <notebook colspan="4">
+                    <page string="Information">
+                        <field name="interval_number"/>
+                        <field name="interval_type"/>
+                        <newline/>
+                        <field name="nextcall"/>
+                        <field name="numbercall"/>
+                        <field name="doall"/>
+                    </page>
+                    <page string="Technical Data" groups="base.group_extended">
+                        <separator string="Action to Trigger" colspan="4"/>
+                        <field name="model" groups="base.group_extended"/>
+                        <field name="function"/>
+                        <separator string="Arguments" colspan="4"/>
+                        <field colspan="4" name="args" nolabel="1"/>
+                    </page>
+                    </notebook>
+                    <group name="button" colspan="4">
+                        <button name="save_and_close_cron"
+                                string="Save and Close"
+                                type="object"/>
+                        <button special="cancel" string="Cancel"/>
+                    </group>
+
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>
